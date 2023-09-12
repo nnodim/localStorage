@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <form action="#" class="box">
+            <h1>Login</h1>
+            <div class="imgcontainer">
+                <img src="img_avatar.png" alt="Avatar" class="avatar" />
+            </div>
+            <input type="text" name="username" id="username" placeholder="Username" required />
+            <input type="password" name="password" id="password" placeholder="Password" required />
+            <p class="err">Invalid Username or Password</p>
+            <div>
+                <input class="submit" type="submit" value="Login" />
+                <P>Don't have an account? <span><a href="Register.html">signup!</a></span> </P>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.querySelector(".box");
+        const username = document.getElementById("username");
+        const password = document.getElementById("password");
+        const err = document.querySelector(".err");
+
+        function validateForm() {
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+            const existingUser = users.find(user => user.username === username.value && user.Password === password.value);
+            
+            if (!existingUser) {
+                err.style.display = "block";
+                return;
+            }
+            sessionStorage.setItem("user", JSON.stringify({ username: username.value }));
+            window.location = "loginSuccess.html";
+        }
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            validateForm();
+        });
+    </script>
+</body>
+
+</html>

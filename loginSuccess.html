@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+    <link rel="stylesheet" href="styles.css">
+    <Style>
+        body {
+            height: 100vh;
+        }
+    </Style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="imgcontainer">
+            <img src="img_avatar.png" alt="Avatar" class="avatar" />
+        </div>
+        <h1>Welcome Back <span class="username"></span>! </h1>
+        <button class="logout">Logout</button>
+    </div>
+</body>
+
+    <script>
+        const username = document.querySelector(".username");
+        const user = JSON.parse(sessionStorage.getItem("user"));
+        username.append(user.username);
+        function logout() {
+            sessionStorage.removeItem("user");
+            window.location = "login.html";
+        }
+        document.querySelector(".logout").addEventListener("click", logout);
+        
+    </script>
+
+</html>
